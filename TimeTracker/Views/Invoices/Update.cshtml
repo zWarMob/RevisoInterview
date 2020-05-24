@@ -1,9 +1,9 @@
 ﻿@model TimeTracker.ViewModels.InvoiceFormViewModel
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Update";
 }
 
-<h1>Create an Invoice</h1>
+<h1>Edit an Invoice</h1>
 @using (Html.BeginForm("Create", "Invoices"))
 {
     <div class="form-group">
@@ -18,5 +18,5 @@
         @Html.LabelFor(m => m.SelectedTimeEntries)
         @Html.ListBoxFor(m => m.SelectedTimeEntries, new SelectList(Model.AvailableTimeEntries, "Id", "Description"))
     </div>
-    <button type="submit" value="save" class="btn btn-primary">Add</button>
+    <button type="submit" value="save" class="btn btn-primary">Save</button>
 }

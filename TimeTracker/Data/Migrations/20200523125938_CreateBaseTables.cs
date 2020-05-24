@@ -1,5 +1,5 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
+using System;
 
 namespace TimeTracker.Data.Migrations
 {
@@ -13,7 +13,7 @@ namespace TimeTracker.Data.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    UserId = table.Column<string>(nullable: true),
+                    UserId = table.Column<string>(nullable: false),
                     Name = table.Column<string>(nullable: true),
                     CompanyName = table.Column<string>(nullable: true),
                     Address = table.Column<string>(nullable: true)
@@ -35,7 +35,7 @@ namespace TimeTracker.Data.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    UserId = table.Column<string>(nullable: true),
+                    UserId = table.Column<string>(nullable: false),
                     CustomerId = table.Column<int>(nullable: true),
                     Date = table.Column<DateTime>(nullable: false)
                 },
@@ -62,7 +62,7 @@ namespace TimeTracker.Data.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    UserId = table.Column<string>(nullable: true),
+                    UserId = table.Column<string>(nullable: false),
                     Description = table.Column<string>(nullable: true),
                     Hours = table.Column<double>(nullable: false),
                     HourlyPrice = table.Column<int>(nullable: false),

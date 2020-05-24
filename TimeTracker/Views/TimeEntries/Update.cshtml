@@ -1,10 +1,10 @@
 ﻿@model TimeTracker.Models.TimeEntry
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Update";
 }
 
-<h1>Add a Time entry</h1>
-@using (Html.BeginForm("Create", "TimeEntries"))
+<h1>Edit a Time entry</h1>
+@using (Html.BeginForm("Update", "TimeEntries"))
 {
     <div class="form-group">
         @Html.LabelFor(m => m.Description)
@@ -18,5 +18,5 @@
         @Html.LabelFor(m => m.Hours)
         @Html.TextBoxFor(m => m.Hours, new { @class = "form-control" })
     </div>
-    <button type="submit" value="save" class="btn btn-primary">Add</button>
+    <button type="submit" value="save" class="btn btn-primary">Save</button>
 }

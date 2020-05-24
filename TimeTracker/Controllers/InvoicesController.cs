@@ -27,6 +27,12 @@ namespace TimeTracker.Controllers
         }
 
         [Authorize]
+        public IActionResult Index()
+        {
+            return View(_context.Invoices.Where(x => x.UserId == _userManager.GetUserId(User)).Include(x => x.Customer));
+        }
+
+        [Authorize]
         public IActionResult Create()
         {
             var viewModel = new InvoiceFormViewModel()
@@ -62,7 +68,46 @@ namespace TimeTracker.Controllers
 
             _context.SaveChanges();
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Invoices");
+        }
+
+        [Authorize]
+        public IActionResult Update(int id)
+        {
+            var invoice = _context.Invoices.Where(x => x.Id == id).Include(x => x.TimeEntries).Single();
+
+            var invoiceModel = new InvoiceFormViewModel()
+            {
+                SelectedCustomerId = invoice.CustomerId,
+                SelectedTimeEntries = invoice.TimeEntries.Select(x => x.Id),
+                AvailableCustomers = _context.Customers.ToListAsync().Result,
+                AvailableTimeEntries = _context.TimeEntries.ToListAsync().Result
+            };
+
+            return View(invoiceModel);
+        }
+
+        [Authorize]
+        [HttpPost]
+        public IActionResult Update(Invoice invoice)
+        {
+            _context.Invoices.Update(invoice);
+            _context.SaveChanges();
+
+            return RedirectToAction("Index", "Invoices");
+        }
+
+        [Authorize]
+        [HttpPost]
+        public IActionResult Delete(int id)
+        {
+            var invoice = _context.Invoices.Find(id);
+
+            _context.Invoices.Remove(invoice);
+
+            _context.SaveChanges();
+
+            return RedirectToAction("Index", "Invoices");
         }
     }
 }

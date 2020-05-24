@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using System.Linq;
 using TimeTracker.Data;
 using TimeTracker.Models;
 
@@ -23,6 +24,12 @@ namespace TimeTracker.Controllers
         }
 
         [Authorize]
+        public IActionResult Index()
+        {
+            return View(_context.TimeEntries.Where(x => x.UserId == _userManager.GetUserId(User)));
+        }
+
+        [Authorize]
         public IActionResult Create()
         {
             return View();
@@ -37,7 +44,36 @@ namespace TimeTracker.Controllers
             _context.TimeEntries.Add(timeEntry);
             _context.SaveChanges();
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "TimeEntries");
+        }
+
+        [Authorize]
+        public IActionResult Update(int id)
+        {
+            return View(_context.TimeEntries.Find(id));
+        }
+
+        [Authorize]
+        [HttpPost]
+        public IActionResult Update(TimeEntry timeEntry)
+        {
+            _context.TimeEntries.Update(timeEntry);
+            _context.SaveChanges();
+
+            return RedirectToAction("Index", "TimeEntries");
+        }
+
+        [Authorize]
+        [HttpPost]
+        public IActionResult Delete(int id)
+        {
+            var timeEntry = _context.TimeEntries.Find(id);
+
+            _context.TimeEntries.Remove(timeEntry);
+
+            _context.SaveChanges();
+
+            return RedirectToAction("Index", "TimeEntries");
         }
     }
 }

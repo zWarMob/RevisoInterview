@@ -1,0 +1,40 @@
+﻿@model IEnumerable<TimeTracker.Models.TimeEntry>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="row">
+    <div class="col">
+        <h1>TimeEntries</h1>
+    </div>
+    <div class="col-md-auto">
+        <a class="btn btn-primary" asp-area="" asp-controller="TimeEntries" asp-action="Create">
+            Add
+        </a>
+    </div>
+</div>
+
+<ul class="list-group">
+
+    @foreach (var timeEntry in Model)
+    {
+        <li class="list-group-item">
+            <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1">@timeEntry.Description</h5>
+                <div class="btn-group" role="group">
+                    <a type="button" class="btn btn-light" asp-area="" asp-controller="TimeEntries" asp-action="Update" asp-route-id="@timeEntry.Id">Edit</a>
+
+                    @using (Html.BeginForm("Delete", "TimeEntries", FormMethod.Post))
+                    {
+                        <button type="submit" class="btn btn-danger" value="Delete" asp-area="" asp-controller="TimeEntries" asp-action="Delete" asp-route-id="@timeEntry.Id">Delete</button>
+                    }
+                </div>
+            </div>
+            <p class="mb-1">@timeEntry.HourlyPrice * @timeEntry.HourlyPrice</p>
+            @if (timeEntry.InvoiceId.HasValue)
+            {
+                <button type="button" class="btn btn-success disabled">Invoiced</button>
+            }
+        </li>
+    }
+</ul>

@@ -14,11 +14,6 @@ namespace TimeTracker.Controllers
         private readonly ApplicationDbContext _context;
         private UserManager<IdentityUser> _userManager;
 
-        public IActionResult Index()
-        {
-            return View(_context.Customers.Where(x => x.UserId == _userManager.GetUserId(User)));
-        }
-
         public CustomersController(IConfiguration configuration, UserManager<IdentityUser> userManager)
         {
             var optionsBuilder = new DbContextOptionsBuilder<ApplicationDbContext>();
@@ -26,6 +21,12 @@ namespace TimeTracker.Controllers
 
             _context = new ApplicationDbContext(optionsBuilder.Options);
             _userManager = userManager;
+        }
+
+        [Authorize]
+        public IActionResult Index()
+        {
+            return View(_context.Customers.Where(x => x.UserId == _userManager.GetUserId(User)));
         }
 
         [Authorize]

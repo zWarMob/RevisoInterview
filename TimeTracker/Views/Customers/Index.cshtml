@@ -12,9 +12,6 @@
             Add
         </a>
     </div>
-    <!--<div class="col col-lg-2">
-        3 of 3
-    </div>-->
 </div>
 
 <ul class="list-group">
@@ -25,7 +22,7 @@
             <div class="d-flex w-100 justify-content-between">
                 <h5 class="mb-1">@customer.CompanyName</h5>
                 <div class="btn-group" role="group">
-                    <button type="button" class="btn btn-light" asp-area="" asp-controller="Customers" asp-action="Update" asp-route-id="@customer.Id">Edit</button>
+                    <a type="button" class="btn btn-light" asp-area="" asp-controller="Customers" asp-action="Update" asp-route-id="@customer.Id">Edit</a>
 
                     @using (Html.BeginForm("Delete", "Customers", FormMethod.Post))
                     {
