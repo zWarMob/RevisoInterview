@@ -24,5 +24,7 @@ namespace TimeTracker.Models
         public Invoice Invoice { get; set; }
 
         public int? InvoiceId { get; set; }
+
+        public double TotalPrice { get { return HourlyPrice * Hours; } }
     }
 }

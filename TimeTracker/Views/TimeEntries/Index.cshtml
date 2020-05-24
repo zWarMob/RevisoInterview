@@ -30,7 +30,8 @@
                     }
                 </div>
             </div>
-            <p class="mb-1">@timeEntry.HourlyPrice * @timeEntry.HourlyPrice</p>
+            <p class="mb-1">Total: @timeEntry.TotalPrice DKK</p>
+            <p><small>@timeEntry.HourlyPrice DKK * @timeEntry.Hours hours</small></p>
             @if (timeEntry.InvoiceId.HasValue)
             {
                 <button type="button" class="btn btn-success disabled">Invoiced</button>
