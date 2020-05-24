@@ -9,11 +9,15 @@ namespace TimeTracker.Models
     {
         public int Id { get; set; }
 
-        [Required]
         public IdentityUser User { get; set; }
 
         [Required]
+        public string UserId { get; set; }
+
         public Customer Customer { get; set; }
+
+        [Required]
+        public int CustomerId { get; set; }
 
         public List<TimeEntry> TimeEntries { get; set; }
 

@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TimeTracker.Data;
 
 namespace TimeTracker.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200523133147_PopulateBaseTables")]
+    partial class PopulateBaseTables
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -388,7 +390,7 @@ namespace TimeTracker.Data.Migrations
 
             modelBuilder.Entity("TimeTracker.Models.TimeEntry", b =>
                 {
-                    b.HasOne("TimeTracker.Models.Invoice", "Invoice")
+                    b.HasOne("TimeTracker.Models.Invoice", null)
                         .WithMany("TimeEntries")
                         .HasForeignKey("InvoiceId");
 

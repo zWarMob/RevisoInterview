@@ -7,8 +7,10 @@ namespace TimeTracker.Models
     {
         public int Id { get; set; }
 
-        [Required]
         public IdentityUser User { get; set; }
+
+        [Required]
+        public string UserId { get; set; }
 
         [Required]
         public string Description { get; set; }
@@ -18,5 +20,9 @@ namespace TimeTracker.Models
 
         [Required]
         public int HourlyPrice { get; set; }
+
+        public Invoice Invoice { get; set; }
+
+        public int? InvoiceId { get; set; }
     }
 }
