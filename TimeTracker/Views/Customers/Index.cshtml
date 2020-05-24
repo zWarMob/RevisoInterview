@@ -24,9 +24,14 @@
         <li class="list-group-item">
             <div class="d-flex w-100 justify-content-between">
                 <h5 class="mb-1">@customer.CompanyName</h5>
-                <a class="btn btn-light" asp-area="" asp-controller="Customers" asp-action="Update" asp-route-id="@customer.Id">
-                    Edit
-                </a>
+                <div class="btn-group" role="group">
+                    <button type="button" class="btn btn-light" asp-area="" asp-controller="Customers" asp-action="Update" asp-route-id="@customer.Id">Edit</button>
+
+                    @using (Html.BeginForm("Delete", "Customers", FormMethod.Post))
+                    {
+                        <button type="submit" class="btn btn-danger" value="Delete" asp-area="" asp-controller="Customers" asp-action="Delete" asp-route-id="@customer.Id">Delete</button>
+                    }
+                </div>
             </div>
             <p class="mb-1">@customer.Name</p>
             <small>@customer.Address</small>
