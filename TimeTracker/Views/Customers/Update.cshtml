@@ -1,0 +1,22 @@
+﻿@model TimeTracker.Models.Customer
+@{
+    ViewData["Title"] = "Update";
+}
+
+<h1>Edit a Customer</h1>
+@using (Html.BeginForm("Update", "Customers"))
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.Name)
+        @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.CompanyName)
+        @Html.TextBoxFor(m => m.CompanyName, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Address)
+        @Html.TextBoxFor(m => m.Address, new { @class = "form-control" })
+    </div>
+    <button type="submit" value="save" class="btn btn-primary">Save</button>
+}
