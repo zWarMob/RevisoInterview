@@ -1,0 +1,15 @@
+﻿@page
+@model TimeTracker.BusinessLogic.Templates.InvoiceReportModel
+@{
+}
+
+<h1>Invoice</h1>
+
+<p>@Model.Date</p>
+<p>@Model.Customer.Name</p>
+<p>@Model.Customer.CompanyName</p>
+
+@foreach (var timeEntry in Model.TimeEntries)
+{
+    <p>@timeEntry.Description - @timeEntry.DescriptionAndPrice</p>
+}
