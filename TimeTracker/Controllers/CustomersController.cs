@@ -67,7 +67,7 @@ namespace TimeTracker.Controllers
         [HttpPost]
         public IActionResult Delete(int id)
         {
-            var customer = _context.Customers.Find(id);
+            var customer = new Customer() { Id = id };
 
             _context.Customers.Remove(customer);
 

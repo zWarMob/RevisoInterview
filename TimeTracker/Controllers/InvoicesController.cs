@@ -101,7 +101,7 @@ namespace TimeTracker.Controllers
         [HttpPost]
         public IActionResult Delete(int id)
         {
-            var invoice = _context.Invoices.Find(id);
+            var invoice = new Invoice() { Id = id };
 
             _context.Invoices.Remove(invoice);
 
