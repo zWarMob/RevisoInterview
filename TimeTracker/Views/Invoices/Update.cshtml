@@ -4,7 +4,7 @@
 }
 
 <h1>Edit an Invoice</h1>
-@using (Html.BeginForm("Create", "Invoices"))
+@using (Html.BeginForm("Update", "Invoices"))
 {
     <div class="form-group">
         @Html.LabelFor(m => m.Date)
@@ -16,7 +16,7 @@
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.SelectedTimeEntries)
-        @Html.ListBoxFor(m => m.SelectedTimeEntries, new SelectList(Model.AvailableTimeEntries, "Id", "Description"))
+        @Html.ListBoxFor(m => m.SelectedTimeEntries, new SelectList(Model.AvailableTimeEntries, "Id", "DescriptionAndPrice"))
     </div>
     <button type="submit" value="save" class="btn btn-primary">Save</button>
 }

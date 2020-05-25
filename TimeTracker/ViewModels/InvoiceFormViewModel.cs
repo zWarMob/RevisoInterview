@@ -14,14 +14,8 @@ namespace TimeTracker.ViewModels
 
         public IEnumerable<int> SelectedTimeEntries { get; set; }
 
-        public IEnumerable<TimeEntry> AvailableTimeEntries { get; set; }
+        public IEnumerable<TimeEntryFormViewModel> AvailableTimeEntries { get; set; }
 
         public DateTime Date { get; set; }
-    }
-
-    public class SelectListItem
-    {
-        public string Text { get; set; }
-        public string Value { get; set; }
     }
 }

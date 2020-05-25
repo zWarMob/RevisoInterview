@@ -29,7 +29,23 @@ namespace TimeTracker.Controllers
         [Authorize]
         public IActionResult Index()
         {
-            return View(_context.Invoices.Where(x => x.UserId == _userManager.GetUserId(User)).Include(x => x.Customer));
+            var invoices = _context.Invoices
+                .Where(x => x.UserId == _userManager.GetUserId(User))
+                .Include(x => x.Customer)
+                .Include(x => x.TimeEntries);
+
+            var invoicesModel = invoices.Select(x => new InvoiceDisplayViewModel()
+            {
+                Date = x.Date,
+                SelectedCustomerId = x.CustomerId,
+                SelectedTimeEntries = x.TimeEntries.Select(y => new TimeEntryFormViewModel()
+                {
+                    Description = y.Description,
+                    TotalPrice = y.TotalPrice
+                })
+            });
+
+            return View(invoices);
         }
 
         [Authorize]
@@ -37,8 +53,15 @@ namespace TimeTracker.Controllers
         {
             var viewModel = new InvoiceFormViewModel()
             {
-                AvailableCustomers = _context.Customers.ToListAsync().Result,
-                AvailableTimeEntries = _context.TimeEntries.ToListAsync().Result
+                AvailableCustomers = _context.Customers.ToList(),
+
+                AvailableTimeEntries = _context.TimeEntries.ToList()
+                    .Select(x => new TimeEntryFormViewModel()
+                    {
+                        Id = x.Id,
+                        Description = x.Description,
+                        TotalPrice = x.TotalPrice
+                    })
             };
 
             return View(viewModel);
@@ -79,9 +102,18 @@ namespace TimeTracker.Controllers
             var invoiceModel = new InvoiceFormViewModel()
             {
                 SelectedCustomerId = invoice.CustomerId,
+
                 SelectedTimeEntries = invoice.TimeEntries.Select(x => x.Id),
-                AvailableCustomers = _context.Customers.ToListAsync().Result,
-                AvailableTimeEntries = _context.TimeEntries.ToListAsync().Result
+
+                AvailableCustomers = _context.Customers.ToList(),
+
+                AvailableTimeEntries = _context.TimeEntries.ToList()
+                    .Select(x => new TimeEntryFormViewModel()
+                    {
+                        Id = x.Id,
+                        Description = x.Description,
+                        TotalPrice = x.TotalPrice
+                    })
             };
 
             return View(invoiceModel);

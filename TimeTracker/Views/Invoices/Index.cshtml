@@ -20,7 +20,7 @@
     {
         <li class="list-group-item">
             <div class="d-flex w-100 justify-content-between">
-                <h5 class="mb-1">@invoice.Customer.CompanyName - @invoice.Date</h5>
+                <h5 class="mb-1">@invoice.Customer.CompanyName</h5>
                 <div class="btn-group" role="group">
                     <a type="button" class="btn btn-light" asp-area="" asp-controller="Invoices" asp-action="Update" asp-route-id="@invoice.Id">Edit</a>
 
@@ -30,6 +30,8 @@
                     }
                 </div>
             </div>
+            <p class="mb-1">Total: @invoice.TimeEntries.Sum(x => x.TotalPrice) DKK</p>
+            <small>@invoice.Date.ToLongDateString()</small>
         </li>
     }
 </ul>
