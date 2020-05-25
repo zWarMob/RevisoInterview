@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Linq;
+using TimeTracker.BusinessLogic;
 using TimeTracker.Data;
 using TimeTracker.Models;
 using TimeTracker.ViewModels;
@@ -46,6 +47,14 @@ namespace TimeTracker.Controllers
             });
 
             return View(invoices);
+        }
+
+        [Authorize]
+        public IActionResult Display(int id)
+        {
+            InvoiceReport report = new InvoiceReport(_context.Invoices.Include("User").Include("TimeEntries").Include("Customer").Single(x => x.Id == id));
+
+            return Content(report.Content, "text/html");
         }
 
         [Authorize]

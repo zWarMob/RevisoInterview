@@ -1,0 +1,20 @@
+﻿@model TimeTracker.BusinessLogic.Templates.InvoiceReportModel
+@using System.Linq
+
+<html>
+<head>
+</head>
+<body>
+    <h1>Invoice</h1>
+
+    <p>@Model.Date</p>
+    <p>@Model.Customer.Name</p>
+    <p>@Model.Customer.CompanyName</p>
+
+    @foreach (var timeEntry in Model.TimeEntries)
+    {
+        <p>@timeEntry.DescriptionAndPrice</p>
+    }
+    <p>Total: @Model.TimeEntries.Sum(x => x.TotalPrice) </p>
+</body>
+</html>

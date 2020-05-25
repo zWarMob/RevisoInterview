@@ -16,7 +16,6 @@ namespace TimeTracker.BusinessLogic
 
         public override string Populate()
         {
-
             InvoiceReportModel model = new InvoiceReportModel
             {
                 Id = data.Id,
