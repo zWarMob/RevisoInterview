@@ -57,6 +57,8 @@ namespace TimeTracker.Controllers
         [HttpPost]
         public IActionResult Update(Customer customer)
         {
+            customer.UserId = _userManager.GetUserId(User);
+
             _context.Customers.Update(customer);
             _context.SaveChanges();
 

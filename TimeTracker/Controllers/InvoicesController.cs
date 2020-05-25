@@ -123,7 +123,10 @@ namespace TimeTracker.Controllers
         [HttpPost]
         public IActionResult Update(Invoice invoice)
         {
+            invoice.UserId = _userManager.GetUserId(User);
+
             _context.Invoices.Update(invoice);
+
             _context.SaveChanges();
 
             return RedirectToAction("Index", "Invoices");
