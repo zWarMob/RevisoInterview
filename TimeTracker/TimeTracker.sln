@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.29806.167
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TimeTracker", "TimeTracker.csproj", "{907226FC-B33B-4143-8DB9-3EA87DE30FE7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "..\Tests\Tests.csproj", "{AC4AEB68-E6A3-4CF3-96A7-76187B30F11A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{907226FC-B33B-4143-8DB9-3EA87DE30FE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{907226FC-B33B-4143-8DB9-3EA87DE30FE7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{907226FC-B33B-4143-8DB9-3EA87DE30FE7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC4AEB68-E6A3-4CF3-96A7-76187B30F11A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC4AEB68-E6A3-4CF3-96A7-76187B30F11A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC4AEB68-E6A3-4CF3-96A7-76187B30F11A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC4AEB68-E6A3-4CF3-96A7-76187B30F11A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,17 +1,12 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using TimeTracker.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using TimeTracker.Data;
 
 namespace TimeTracker
 {
@@ -57,6 +52,15 @@ namespace TimeTracker
 
             app.UseAuthentication();
             app.UseAuthorization();
+
+            app.Use(async (context, next) =>
+            {
+                if (context.Request.Path.Value == "/Identity/Account/Login" && context.Request.Method == "GET")
+                {
+                    context.Response.StatusCode = StatusCodes.Status401Unauthorized;
+                }
+                await next();
+            });
 
             app.UseEndpoints(endpoints =>
             {

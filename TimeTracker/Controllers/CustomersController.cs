@@ -26,6 +26,8 @@ namespace TimeTracker.Controllers
         [Authorize]
         public IActionResult Index()
         {
+            var cprinc = User;
+            var iduser = _userManager.GetUserAsync(User).Result;
             return View(_context.Customers.Where(x => x.UserId == _userManager.GetUserId(User)));
         }
 
